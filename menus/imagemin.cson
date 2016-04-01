@@ -1,0 +1,16 @@
+'context-menu':
+  'atom-workspace': [{
+    label: 'Minify image',
+    command: 'imagemin:minify'
+  }]
+
+'menu': [{
+  label: 'Packages'
+  submenu: [
+    label: 'Imagemin'
+    submenu: [{
+      label: 'Minify image',
+      command: 'imagemin:minify'
+    }]
+  ]
+}]

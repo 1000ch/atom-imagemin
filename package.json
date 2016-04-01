@@ -1,0 +1,27 @@
+{
+  "name": "imagemin",
+  "version": "0.0.0",
+  "description": "Minify PNG, JPEG, GIF and SVG images with imagemin",
+  "keywords": [
+    "image",
+    "img",
+    "png",
+    "jpg",
+    "gif",
+    "svg",
+    "minify"
+  ],
+  "repository": "1000ch/atom-imagemin",
+  "author": {
+    "name": "Shogo Sensui",
+    "email": "shogo.sensui@gmail.com",
+    "url": "https://github.com/1000ch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "imagemin": "^4.0.0",
+    "imagemin-jpegoptim": "^4.1.0",
+    "imagemin-mozjpeg": "^5.1.0",
+    "imagemin-pngquant": "^4.2.2"
+  }
+}
