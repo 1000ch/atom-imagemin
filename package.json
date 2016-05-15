@@ -19,9 +19,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "imagemin": "^4.0.0",
+    "imagemin": "^5.1.1",
     "imagemin-jpegoptim": "^4.1.0",
-    "imagemin-mozjpeg": "^5.1.0",
-    "imagemin-pngquant": "^4.2.2"
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.0"
   }
 }
