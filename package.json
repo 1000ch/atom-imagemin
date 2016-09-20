@@ -18,6 +18,32 @@
     "url": "https://github.com/1000ch"
   },
   "license": "MIT",
+  "configSchema": {
+    "jpegQuality": {
+      "title": "JPEG Quality",
+      "type": "number",
+      "default": 80,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "progressive": {
+      "title": "Progressive",
+      "type": "boolean",
+      "default": true
+    },
+    "pngQuality": {
+      "title": "PNG Quality",
+      "type": "number",
+      "default": 80,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "interlace": {
+      "title": "Interlace",
+      "type": "boolean",
+      "default": true
+    }
+  },
   "dependencies": {
     "imagemin": "^5.2.2",
     "imagemin-gifsicle": "^5.1.0",

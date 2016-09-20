@@ -14,33 +14,6 @@ import svgo from 'imagemin-svgo';
 
 const fsP = pify(fs);
 
-export const config = {
-  jpegQuality : {
-    title   : 'JPEG Quality',
-    type    : 'number',
-    default : 80,
-    minimum : 0,
-    maximum : 100
-  },
-  progressive : {
-    title   : 'Progressive',
-    type    : 'boolean',
-    default : true
-  },
-  pngQuality : {
-    title   : 'PNG Quality',
-    type    : 'number',
-    default : 80,
-    minimum : 0,
-    maximum : 100
-  },
-  interlace : {
-    title   : 'Interlace',
-    type    : 'boolean',
-    default : true
-  }
-};
-
 const SUPPORTTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
 
 let subscriptions;
