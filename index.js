@@ -90,7 +90,7 @@ function minify() {
     return fsP.writeFile(filePath, buffer);
   }).then(() => {
     if (before > after) {
-      atom.notifications.addSuccess(`${filesize(before - after)} bytes reduced`);
+      atom.notifications.addSuccess(`${filesize(before - after)} reduced`);
     } else {
       atom.notifications.addInfo(`Cannot improve upon ${filesize(before)}`);
     }
