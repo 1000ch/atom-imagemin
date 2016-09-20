@@ -45,6 +45,7 @@
     }
   },
   "dependencies": {
+    "filesize": "^3.3.0",
     "imagemin": "^5.2.2",
     "imagemin-gifsicle": "^5.1.0",
     "imagemin-jpegoptim": "^5.0.0",

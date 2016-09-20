@@ -4,6 +4,7 @@ import { CompositeDisposable } from 'atom';
 import fs from 'fs';
 import path from 'path';
 import pify from 'pify';
+import filesize from 'filesize';
 import imagemin from 'imagemin';
 import pngquant from 'imagemin-pngquant';
 import optipng from 'imagemin-optipng';
@@ -79,11 +80,19 @@ function minify() {
       break;
   }
 
-  imagemin([filePath], dirname, {
-    plugins : plugins
-  }).then(files => {
-    return Promise.all(files.map(file => {
-      return fsP.writeFile(file.path, file.data);
-    }));
+  let before = 0;
+  let after = 0;
+  fsP.readFile(filePath).then(buffer => {
+    before = buffer.length;
+    return imagemin.buffer(buffer);
+  }).then(buffer => {
+    after = buffer.length;
+    return fsP.writeFile(filePath, buffer);
+  }).then(() => {
+    if (before > after) {
+      atom.notifications.addSuccess(`${filesize(before - after)} bytes reduced`);
+    } else {
+      atom.notifications.addInfo(`Cannot improve upon ${filesize(before)}`);
+    }
   });
 }
