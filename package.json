@@ -1,6 +1,6 @@
 {
   "name": "imagemin",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Minify PNG, JPEG, GIF and SVG images with imagemin",
   "keywords": [
     "image",
