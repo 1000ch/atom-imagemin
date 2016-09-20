@@ -1,10 +1,17 @@
 "use babel";
 
+import fs from 'fs';
 import path from 'path';
-import Imagemin from 'imagemin';
+import pify from 'pify';
+import imagemin from 'imagemin';
 import pngquant from 'imagemin-pngquant';
+import optipng from 'imagemin-optipng';
 import mozjpeg from 'imagemin-mozjpeg';
 import jpegoptim from 'imagemin-jpegoptim';
+import gifsicle from 'imagemin-gifsicle';
+import svgo from 'imagemin-svgo';
+
+const fsP = pify(fs);
 
 export const config = {
   jpegQuality : {
@@ -69,32 +76,39 @@ function minify() {
     return;
   }
 
-  const imagemin = new Imagemin();
-
+  const plugins = [];
   switch (extname) {
     case '.jpg':
     case '.jpeg':
-      imagemin.use(mozjpeg({
+      plugins.push(mozjpeg({
         quality     : jpegQuality,
         progressive : progressive
       }));
-      imagemin.use(jpegoptim());
+      plugins.push(jpegoptim());
       break;
     case '.png':
-      imagemin.use(pngquant({ quality : pngQuality }));
-      imagemin.use(Imagemin.optipng());
+      plugins.push(pngquant({
+        quality : pngQuality
+      }));
+      plugins.push(optipng());
       break;
     case '.gif':
-      imagemin.use(Imagemin.gifsicle({ interlace : interlace }));
+      plugins.push(gifsicle({
+        interlace : interlace
+      }));
       break;
     case '.svgo':
-      imagemin.use(Imagemin.svgo());
+      plugins.push(svgo());
       break;
     default:
       break;
   }
 
-  imagemin.src(filePath);
-  imagemin.dest(dirname);
-  imagemin.run();
+  imagemin([filePath], dirname, {
+    plugins : plugins
+  }).then(files => {
+    return Promise.all(files.map(file => {
+      return fsP.writeFile(file.path, file.data);
+    }));
+  });
 }
