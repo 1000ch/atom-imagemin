@@ -1,5 +1,6 @@
 "use babel";
 
+import { CompositeDisposable } from 'atom';
 import fs from 'fs';
 import path from 'path';
 import pify from 'pify';
@@ -42,6 +43,7 @@ export const config = {
 
 const SUPPORTTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
 
+let subscriptions;
 let jpegQuality;
 let progressive;
 let pngQuality;
@@ -50,15 +52,15 @@ let interlace;
 export function activate() {
   atom.commands.add('atom-workspace', 'imagemin:minify', () => minify());
 
-  jpegQuality = atom.config.get('imagemin.jpegQuality');
-  progressive = atom.config.get('imagemin.progressive');
-  pngQuality = atom.config.get('imagemin.pngQuality');
-  interlace = atom.config.get('imagemin.interlace');
+  subscriptions = new CompositeDisposable();
+  subscriptions.add(atom.config.observe('imagemin.jpegQuality', value => jpegQuality = value));
+  subscriptions.add(atom.config.observe('imagemin.progressive', value => progressive = value));
+  subscriptions.add(atom.config.observe('imagemin.pngQuality', value => pngQuality = value));
+  subscriptions.add(atom.config.observe('imagemin.interlace', value => interlace = value));
+}
 
-  atom.config.observe('imagemin.jpegQuality', value => jpegQuality = value);
-  atom.config.observe('imagemin.progressive', value => progressive = value);
-  atom.config.observe('imagemin.pngQuality', value => pngQuality = value);
-  atom.config.observe('imagemin.interlace', value => interlace = value);
+export function deactivate() {
+  subscriptions.dispose();
 }
 
 function minify() {
