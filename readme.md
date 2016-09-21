@@ -10,9 +10,8 @@ $ apm install imagemin
 
 ## Usage
 
-- Press <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>o</kbd>
 - `Packages` > `Imagemin` > `Minify image`
-- Right Click > `Minify image`
+- Context Menu > `Minify image`
 
 ## License
 
