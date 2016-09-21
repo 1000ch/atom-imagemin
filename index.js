@@ -15,7 +15,13 @@ import svgo from 'imagemin-svgo';
 
 const fsP = pify(fs);
 
-const SUPPORTTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
+const SUPPORTTED_EXTENSIONS = new Set([
+  '.jpg',
+  '.jpeg',
+  '.png',
+  '.gif',
+  '.svg'
+]);
 
 let subscriptions;
 let jpegQuality;
@@ -48,7 +54,7 @@ function minify() {
   const extname = path.extname(filePath);
   const dirname = path.dirname(filePath);
 
-  if (SUPPORTTED_EXTENSIONS.indexOf(extname) === -1) {
+  if (!SUPPORTTED_EXTENSIONS.has(extname)) {
     return;
   }
 
