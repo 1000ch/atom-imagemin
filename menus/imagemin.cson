@@ -1,5 +1,5 @@
 'context-menu':
-  'atom-workspace': [{
+  '.image-view': [{
     label: 'Minify image',
     command: 'imagemin:minify'
   }]
