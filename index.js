@@ -90,7 +90,9 @@ function minify() {
   let after = 0;
   fsP.readFile(filePath).then(buffer => {
     before = buffer.length;
-    return imagemin.buffer(buffer);
+    return imagemin.buffer(buffer, {
+      plugins: plugins
+    });
   }).then(buffer => {
     after = buffer.length;
     return fsP.writeFile(filePath, buffer);
