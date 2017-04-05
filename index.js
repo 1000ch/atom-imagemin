@@ -1,6 +1,5 @@
 "use babel";
 
-import { CompositeDisposable } from 'atom';
 import fs from 'fs';
 import path from 'path';
 import pify from 'pify';
@@ -23,29 +22,13 @@ const SUPPORTTED_EXTENSIONS = new Set([
   '.svg'
 ]);
 
-let subscriptions;
-let jpegQuality;
-let progressive;
-let pngQuality;
-let interlace;
-
 export function activate() {
-  atom.commands.add('atom-workspace', 'imagemin:minify', () => minify());
-
-  subscriptions = new CompositeDisposable();
-  subscriptions.add(atom.config.observe('imagemin.jpegQuality', value => jpegQuality = value));
-  subscriptions.add(atom.config.observe('imagemin.progressive', value => progressive = value));
-  subscriptions.add(atom.config.observe('imagemin.pngQuality', value => pngQuality = value));
-  subscriptions.add(atom.config.observe('imagemin.interlace', value => interlace = value));
+  atom.commands.add('atom-workspace', 'imagemin:minify', () => {
+    minify(atom.workspace.getActivePaneItem());
+  });
 }
 
-export function deactivate() {
-  subscriptions.dispose();
-}
-
-function minify() {
-  const activePaneItem = atom.workspace.getActivePaneItem();
-
+function minify(activePaneItem) {
   if (!activePaneItem.file) {
     return;
   }
@@ -63,20 +46,20 @@ function minify() {
     case '.jpg':
     case '.jpeg':
       plugins.push(mozjpeg({
-        quality     : jpegQuality,
-        progressive : progressive
+        quality: atom.config.get('imagemin.jpegQuality'),
+        progressive: atom.config.get('imagemin.progressive')
       }));
       plugins.push(jpegoptim());
       break;
     case '.png':
       plugins.push(pngquant({
-        quality : pngQuality
+        quality: atom.config.get('imagemin.pngQuality')
       }));
       plugins.push(optipng());
       break;
     case '.gif':
       plugins.push(gifsicle({
-        interlace : interlace
+        interlace: atom.config.get('imagemin.interlace')
       }));
       break;
     case '.svgo':
