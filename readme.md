@@ -1,6 +1,12 @@
-# [atom-imagemin](https://atom.io/packages/imagemin) [![Dependency Status](https://david-dm.org/1000ch/atom-imagemin.svg)](https://david-dm.org/1000ch/atom-imagemin)
+# [atom-imagemin](https://atom.io/packages/imagemin)
 
 Minify images with [imagemin](http://github.com/imagemin/imagemin).
+
+[![Build Status](https://travis-ci.org/1000ch/atom-imagemin.svg?branch=master)](https://travis-ci.org/1000ch/atom-imagemin)
+[![Build status](https://ci.appveyor.com/api/projects/status/9s1ic50y2mlrbge2/branch/master?svg=true)](https://ci.appveyor.com/project/1000ch/atom-imagemin/branch/master)
+[![Build Status](https://circleci.com/gh/1000ch/atom-imagemin/tree/master.svg?style=shield&circle-token=948bf903ddab915de586ad0afe69cee03dcf3ca1)](https://circleci.com/gh/1000ch/atom-imagemin)
+[![Dependency Status](https://david-dm.org/1000ch/atom-imagemin.svg)](https://david-dm.org/1000ch/atom-imagemin)
+[![devDependency Status](https://david-dm.org/1000ch/atom-imagemin/dev-status.svg)](https://david-dm.org/1000ch/atom-imagemin?type=dev)
 
 ## Installation
 
@@ -10,9 +16,10 @@ $ apm install imagemin
 
 ## Usage
 
-- `Packages` > `Imagemin` > `Minify image`
-- Context Menu > `Minify image`
+- Packages > Imagemin > **Minify image**
+- Context Menu > **Minify image**
+- Command Palette (<kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>) > **Minify image**
 
 ## License
 
-MIT: http://1000ch.mit-license.org
+[MIT](https://1000ch.mit-license.org) © [Shogo Sensui](https://github.com/1000ch)
