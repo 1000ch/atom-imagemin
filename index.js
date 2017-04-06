@@ -10,7 +10,6 @@ import optipng from 'imagemin-optipng';
 import mozjpeg from 'imagemin-mozjpeg';
 import jpegoptim from 'imagemin-jpegoptim';
 import gifsicle from 'imagemin-gifsicle';
-import svgo from 'imagemin-svgo';
 
 const fsP = pify(fs);
 
@@ -18,8 +17,7 @@ const SUPPORTTED_EXTENSIONS = new Set([
   '.jpg',
   '.jpeg',
   '.png',
-  '.gif',
-  '.svg'
+  '.gif'
 ]);
 
 export function activate() {
@@ -28,14 +26,13 @@ export function activate() {
   });
 }
 
-function minify(activePaneItem) {
+export function minify(activePaneItem) {
   if (!activePaneItem.file) {
     return;
   }
 
   const filePath = activePaneItem.file.path;
   const extname = path.extname(filePath);
-  const dirname = path.dirname(filePath);
 
   if (!SUPPORTTED_EXTENSIONS.has(extname)) {
     return;
@@ -62,16 +59,13 @@ function minify(activePaneItem) {
         interlace: atom.config.get('imagemin.interlace')
       }));
       break;
-    case '.svgo':
-      plugins.push(svgo());
-      break;
     default:
       break;
   }
 
   let before = 0;
   let after = 0;
-  fsP.readFile(filePath).then(buffer => {
+  return fsP.readFile(filePath).then(buffer => {
     before = buffer.length;
     return imagemin.buffer(buffer, {
       plugins: plugins
