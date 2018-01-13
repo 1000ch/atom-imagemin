@@ -4,7 +4,10 @@
   "private": true,
   "description": "Minify PNG, JPEG and GIF images with imagemin",
   "license": "MIT",
-  "repository": "1000ch/atom-imagemin",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:1000ch/atom-imagemin.git"
+  },
   "author": {
     "name": "Shogo Sensui",
     "email": "shogo.sensui@gmail.com",
