@@ -63,7 +63,7 @@
     "pify": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.15.0",
+    "eslint": "^4.16.0",
     "tempy": "^0.2.1"
   }
 }
