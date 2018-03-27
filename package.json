@@ -1,6 +1,6 @@
 {
   "name": "imagemin",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "description": "Minify PNG, JPEG and GIF images with imagemin",
   "license": "MIT",
