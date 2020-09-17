@@ -1,4 +1,4 @@
-# [atom-imagemin](https://atom.io/packages/imagemin)
+# atom-[imagemin](https://atom.io/packages/imagemin)
 
 Minify images with [imagemin](http://github.com/imagemin/imagemin).
 
